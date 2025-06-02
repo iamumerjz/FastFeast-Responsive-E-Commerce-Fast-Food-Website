@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(32, 33, 36, 0.45);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background: #fff;
+  border-radius: 22px;
+  max-width: 390px;
+  width: 95vw;
+  padding: 38px 28px 30px 28px;
+  box-shadow: 0 6px 40px rgba(0,0,0,0.15);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  animation: popIn 0.19s cubic-bezier(.57,1.42,.33,.99);
+}
+
+@keyframes popIn {
+  from { transform: scale(0.96) translateY(30px); opacity: 0; }
+  to   { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.modal-close {
+  position: absolute;
+  top: 22px; right: 22px;
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: #999;
+  cursor: pointer;
+  z-index: 2;
+  transition: color 0.2s;
+}
+
+.modal-close:hover {
+  color: #ee032b;
+}
+
+.modal-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 35px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #ee032b;
+  letter-spacing: 1px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+label {
+  font-size: 15px;
+  margin-bottom: 2px;
+  color: #4e4e4e;
+}
+
+input[type="email"], input[type="password"] {
+  padding: 11px 14px;
+  border: 1.4px solid #e0e0e0;
+  border-radius: 7px;
+  font-size: 16px;
+  background: #fafafa;
+  margin-bottom: 5px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+input[type="email"]:focus, input[type="password"]:focus {
+  border-color: #ee032b;
+}
+
+.login-btn {
+  background: #ee032b;
+  color: #fff;
+  font-size: 18px;
+  border: none;
+  border-radius: 7px;
+  padding: 12px 0;
+  margin-top: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.login-btn:hover {
+  background: #b50022;
+}
+
+.checkbox-row {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+}
+
+.signup-link {
+  margin-top: 17px;
+  font-size: 15px;
+  text-align: left;
+  color: #4e4e4e;
+}
+
+.signup-link a {
+  color: #ee032b;
+  font-weight: 500;
+  text-decoration: none;
+  margin-left: 4px;
+}
+.signup-link a:hover {
+  text-decoration: underline;
+}
+
+.pink{
+    color: #ee032b;
+}
+
+.checkbox-row input[type="checkbox"] {
+  accent-color: #ee032b;     /* Works in most modern browsers */
+  width: 18px;
+  height: 18px;
+  margin-right: 7px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+  .modal-content {
+    padding: 24px 16px 20px 16px;
+    max-width: 320px;
+    width: 100%;
+    margin: 0 12px;
+    border-radius: 18px;
+  }
+
+  .modal-title {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+
+  input[type="email"],
+  input[type="password"],
+  input[type="text"] {
+    font-size: 14px;
+    padding: 10px 12px;
+  }
+
+  .login-btn {
+    font-size: 16px;
+    padding: 10px 0;
+  }
+
+  .checkbox-row {
+    font-size: 14px;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .checkbox-row input[type="checkbox"] {
+    margin: 0;
+    width: 14px;
+    height: 14px;
+    margin-right: 8px;
+  }
+
+  .signup-link {
+    font-size: 13px;
+    text-align: center;
+    margin-top: 14px;
+  }
+
+  .modal-close {
+    font-size: 24px;
+    top: 16px;
+    right: 16px;
+  }
+}

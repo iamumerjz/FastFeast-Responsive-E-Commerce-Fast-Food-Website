@@ -1,0 +1,883 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap");
+
+.navbar {
+  background-color: white;
+  padding: 0 40px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  color: #000;
+  font-family: "Arial", sans-serif;
+  box-shadow: 0 2px 5px rgb(0 0 0 / 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+.navbar-content {
+  max-width: 1125px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-logo {
+  font-family: "Dancing Script", cursive;
+  font-size: 34px;
+  font-weight: 700;
+  color: #ee032b ;
+  cursor: pointer;
+  margin-left: 18px;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 40px;
+  font-weight: 500;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  transition: right 0.36s cubic-bezier(.57,1.51,.42,.98);
+}
+
+.nav-links li {
+  cursor: pointer;
+  color: #000;
+  position: relative;
+  padding-bottom: 5px;
+  transition: color 0.3s;
+}
+.nav-links li:hover,
+.nav-links li.active {
+  color: #ee032b;
+}
+.nav-links li.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #ee032b;
+  border-radius: 2px;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.icon {
+  stroke: #000;
+  cursor: pointer;
+  transition: stroke 0.3s;
+}
+.icon:hover {
+  stroke: #ee032b;
+}
+.sign-in-btn {
+  border: 1.5px solid #ee032b;
+  background: transparent;
+  color: #ee032b;
+  padding: 6px 18px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: background-color 0.3s, color 0.3s;
+}
+.sign-in-btn:hover {
+  background-color: #ee032b;
+  color: white;
+}
+
+/* ---- DESKTOP SEARCH ---- */
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.desktop-search-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  margin-right: 6px;
+  transition: color 0.3s;
+  z-index: 11;
+  position: relative;
+}
+.desktop-search-btn .icon {
+  transition: stroke 0.4s cubic-bezier(.57,1.51,.42,.98);
+}
+.desktop-search-btn.show-search .icon {
+  stroke: #ee032b;
+}
+.desktop-search-input {
+  opacity: 0;
+  width: 0;
+  padding: 0;
+  border: 2px solid #ee032b;
+  border-radius: 25px;
+  font-size: 15px;
+  position: absolute;
+  right: 0; /* start off at right */
+  top: 50%;
+  transform: translateY(-50%) translateX(100%);
+  background: #fff;
+  outline: none;
+  transition: transform 0.35s ease, opacity 0.35s ease, width 0.35s ease, padding 0.35s ease;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(238, 3, 43, 0.12);
+}
+
+.desktop-search-input.show-search {
+  opacity: 1;
+  width: 180px;
+  padding: 6px 16px;
+  transform: translateY(-50%) translateX(0);
+  box-shadow: 0 2px 8px rgba(238, 3, 43, 0.3);
+}
+
+.search-results-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 180px;
+  max-height: 200px;
+  background: white;
+  border: 1.5px solid #ee032b;
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 4px 12px rgba(238, 3, 43, 0.2);
+  overflow-y: auto;
+  z-index: 20;
+  font-size: 14px;
+  color: #000;
+}
+
+.search-results-dropdown li {
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.search-results-dropdown li:hover {
+  background-color: #ffeeee;
+}
+
+/* ---- BURGER ANIMATION ---- */
+.burger-btn {
+  display: none;
+  background: none;
+  border: none;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  z-index: 999;
+  cursor: pointer;
+}
+.burger-bar {
+  display: block;
+  height: 3.5px;
+  width: 27px;
+  background: #ee032b;
+  margin: 5px auto;
+  border-radius: 2px;
+  transition: 0.23s cubic-bezier(.57,1.51,.42,.98);
+}
+.burger-btn.open .burger-bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.burger-btn.open .burger-bar:nth-child(2) {
+  opacity: 0;
+}
+.burger-btn.open .burger-bar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* ---- MOBILE MENU ---- */
+.mobile-sign-in, .mobile-action-item { display: none; }
+.mobile-action-btn {
+  width: 100%;
+  background: transparent;
+  border: 1.5px solid #ee032b;
+  color: #ee032b;
+  padding: 12px 16px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+.mobile-action-btn:hover {
+  background: #ee032b;
+  color: white;
+}
+.mobile-action-btn:hover .mobile-icon {
+  stroke: white;
+}
+.mobile-icon {
+  stroke: #ee032b;
+  transition: stroke 0.3s ease;
+}
+.mobile-search-input-wrap {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.mobile-search-input {
+  width: 100%;
+  border: 1.5px solid #ee032b;
+  border-radius: 25px;
+  font-size: 16px;
+  padding: 9px 16px;
+  margin-bottom: 8px;
+  outline: none;
+  margin-top: 5px;
+  transition: border-color 0.25s;
+}
+.mobile-search-input:focus {
+  border-color: #c50225;
+}
+.mobile-search-input-wrap {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.mobile-search-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px 0 0;
+}
+
+.mobile-search-input {
+  flex: 1;
+  border: 1.5px solid #ee032b;
+  border-radius: 25px;
+  font-size: 16px;
+  padding: 9px 16px;
+  outline: none;
+  transition: border-color 0.25s;
+  background: #fff;
+}
+
+.mobile-search-input:focus {
+  border-color: #c50225;
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .navbar {
+    padding: 0 12px;
+  }
+  .nav-logo { font-size: 28px; margin-left: 8px; }
+  .nav-links {
+    position: fixed;
+    top: 60px;
+    right: -100vw;
+    flex-direction: column;
+    background: #fff;
+    box-shadow: -3px 0 18px rgba(0, 0, 0, 0.1);
+    width: 78vw;
+    max-width: 350px;
+    height: calc(100vh - 60px);
+    align-items: flex-start;
+    padding: 32px;
+    gap: 25px;
+    z-index: 201;
+    transition: right 0.36s cubic-bezier(.57,1.51,.42,.98);
+    overflow-y: auto;
+  }
+  .nav-links.nav-open {
+    right: 0;
+  }
+  .burger-btn {
+    display: inline-block;
+    z-index: 210;
+  }
+  .nav-right .icon,
+  .nav-right .sign-in-btn {
+    display: none;
+  }
+  .mobile-sign-in,
+  .mobile-action-item {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    text-align: center;
+  }
+  .mobile-sign-in .sign-in-btn {
+    width: 100%;
+    background: #ee032b;
+    color: #fff;
+    font-size: 17px;
+    padding: 14px 0;
+    border: none;
+    border-radius: 25px;
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(238, 3, 43, 0.15);
+    transition: background 0.2s, color 0.2s;
+  }
+  .mobile-sign-in .sign-in-btn:hover {
+    background: #c50225;
+    color: #fff;
+  }
+}
+
+/* Overlay for menu */
+.nav-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 200;
+  animation: fadeIn 0.2s;
+}
+
+@media (max-width: 400px) {
+  .nav-links { width: 97vw; }
+}
+
+
+/* Dropdown common styles */
+.autocomplete-dropdown {
+  position: absolute;
+  top: 100%; /* directly below input */
+  left: 0;
+  right: 0;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  max-height: 220px;
+  overflow-y: auto;
+  z-index: 1500;
+  margin-top: 6px;
+  padding: 0;
+  list-style: none;
+  font-size: 14px;
+}
+
+/* Mobile dropdown can be slightly wider or narrower if needed */
+.mobile-autocomplete-dropdown {
+  width: 90vw;
+  max-width: 320px;
+  right: auto; /* reset right to auto for mobile */
+}
+
+/* Each item styling */
+.autocomplete-item {
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-bottom: 1px solid #eee;
+}
+
+/* Last item no border */
+.autocomplete-item:last-child {
+  border-bottom: none;
+}
+
+/* Hover/focus highlight */
+.autocomplete-item:hover,
+.autocomplete-item:focus {
+  background-color: #f7f7f7;
+  outline: none;
+}
+
+/* Scrollbar styling for better UX */
+.autocomplete-dropdown::-webkit-scrollbar {
+  width: 6px;
+}
+
+.autocomplete-dropdown::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,0.15);
+  border-radius: 3px;
+}
+
+/* Input fields padding & font consistency */
+.desktop-search-input,
+.mobile-search-input {
+  padding: 8px 12px;
+  font-size: 15px;
+  border: 1.5px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Input focus border color */
+.desktop-search-input:focus,
+.mobile-search-input:focus {
+  border-color: #ee032b; /* Your red brand color */
+  box-shadow: 0 0 6px rgba(238,3,43,0.3);
+}
+
+/* Make sure dropdown does not overflow on smaller screens */
+@media (max-width: 768px) {
+  .autocomplete-dropdown {
+    max-height: 180px;
+    font-size: 13px;
+  }
+}
+
+/* Ensure the container is relative */
+
+
+/* Desktop dropdown centered below input */
+.autocomplete-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 50%;              /* start at center */
+  transform: translateX(-50%); /* shift left by 50% of width */
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  max-height: 220px;
+  overflow-y: auto;
+  z-index: 1500;
+  margin-top: 6px;
+  padding: 0;
+  list-style: none;
+  font-size: 14px;
+  width: 280px;  /* fixed width for consistent look */
+  min-width: 250px;
+  max-width: 320px;
+}
+
+/* Mobile dropdown centered below input */
+.mobile-autocomplete-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 50%;              /* center */
+  transform: translateX(-50%);
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 2000;
+  list-style: none;
+  padding: 0;
+  width: 90vw;            /* mobile full-ish width */
+  max-width: 320px;
+}
+
+/* Suggestion items same as before */
+.autocomplete-item {
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-bottom: 1px solid #eee;
+}
+
+.autocomplete-item:last-child {
+  border-bottom: none;
+}
+
+.autocomplete-item:hover,
+.autocomplete-item:focus {
+  background-color: #f7f7f7;
+  outline: none;
+}
+
+
+/* User Dropdown Styles */
+.user-dropdown-container {
+  position: relative;
+  display: inline-block;
+}
+
+.user-icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+}
+
+.user-icon-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.user-icon-btn .icon {
+  color: white;
+}
+
+.user-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  min-width: 200px;
+  overflow: hidden;
+  z-index: 1000;
+  margin-top: 8px;
+  animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.user-dropdown-header {
+  padding: 16px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+}
+
+.user-dropdown-item {
+  width: 100%;
+  padding: 12px 16px;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #333;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+}
+
+.user-dropdown-item:hover {
+  background-color: #f8f9fa;
+}
+
+.user-dropdown-item:last-child {
+  border-top: 1px solid #e9ecef;
+}
+
+.dropdown-icon {
+  color: #6c757d;
+  flex-shrink: 0;
+}
+
+/* Mobile User Menu Styles */
+.mobile-user-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 0;
+}
+
+.mobile-dropdown-btn {
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.mobile-dropdown-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .user-dropdown-container {
+    display: none; /* Hide desktop dropdown on mobile */
+  }
+}
+
+
+
+/* Add this to your existing CSS - specifically for the mobile responsive section */
+
+/* Update the existing mobile responsive rule around line 300+ */
+@media (max-width: 1100px) {
+  .navbar {
+    padding: 0 12px;
+  }
+  .nav-logo { font-size: 28px; margin-left: 8px; }
+  .nav-links {
+    position: fixed;
+    top: 60px;
+    right: -100vw;
+    flex-direction: column;
+    background: #fff;
+    box-shadow: -3px 0 18px rgba(0, 0, 0, 0.1);
+    width: 78vw;
+    max-width: 350px;
+    height: calc(100vh - 60px);
+    align-items: flex-start;
+    padding: 32px;
+    gap: 25px;
+    z-index: 201;
+    transition: right 0.36s cubic-bezier(.57,1.51,.42,.98);
+    overflow-y: auto;
+  }
+  .nav-links.nav-open {
+    right: 0;
+  }
+  .burger-btn {
+    display: inline-block;
+    z-index: 210;
+  }
+  .nav-right .icon,
+  .nav-right .sign-in-btn {
+    display: none;
+  }
+  
+  /* UPDATED: Show user dropdown for admin/logged-in users on mobile */
+  .nav-right .user-dropdown-container {
+    display: inline-block !important; /* Override the hide rule */
+  }
+  
+  /* Ensure user icon is visible on mobile */
+  .user-icon-btn {
+    display: flex !important;
+  }
+  
+  .mobile-sign-in,
+  .mobile-action-item {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    text-align: center;
+  }
+  .mobile-sign-in .sign-in-btn {
+    width: 100%;
+    background: #ee032b;
+    color: #fff;
+    font-size: 17px;
+    padding: 14px 0;
+    border: none;
+    border-radius: 25px;
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(238, 3, 43, 0.15);
+    transition: background 0.2s, color 0.2s;
+  }
+  .mobile-sign-in .sign-in-btn:hover {
+    background: #c50225;
+    color: #fff;
+  }
+}
+
+/* Additional mobile styling for better user icon visibility */
+@media (max-width: 768px) {
+  .user-icon-btn {
+    padding: 6px !important;
+    margin-right: 8px;
+  }
+  
+  .user-icon-btn .icon {
+    width: 20px !important;
+    height: 20px !important;
+  }
+  
+  /* Adjust dropdown position for mobile */
+  .user-dropdown {
+    right: 8px;
+    min-width: 180px;
+  }
+}
+
+/* For very small screens */
+@media (max-width: 400px) {
+  .nav-links { width: 97vw; }
+  
+  .user-dropdown {
+    right: 4px;
+    min-width: 160px;
+    font-size: 13px;
+  }
+  
+  .user-dropdown-item {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+}
+
+
+/* Enhanced Mobile User Section Styles */
+
+/* Mobile User Section Container */
+.mobile-user-section {
+  width: 100%;
+  background: linear-gradient(135deg, #ee032b 0%, #c50225 100%);
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 15px;
+  box-shadow: 0 4px 15px rgba(238, 3, 43, 0.2);
+}
+
+/* Welcome Message Styling */
+.mobile-user-welcome {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 18px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.mobile-user-welcome .mobile-user-icon {
+  width: 22px;
+  height: 22px;
+  stroke: white;
+  flex-shrink: 0;
+}
+
+/* User Actions Container */
+.mobile-user-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* User Action Buttons */
+.mobile-user-btn {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 14px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Button Hover Effects */
+.mobile-user-btn:hover,
+.mobile-user-btn:active {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Button Icons */
+.mobile-btn-icon {
+  width: 18px;
+  height: 18px;
+  stroke: white;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.mobile-user-btn:hover .mobile-btn-icon {
+  transform: scale(1.1);
+}
+
+/* Specific Button Styling */
+.past-orders-btn {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.past-orders-btn:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.logout-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.logout-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Add subtle animation */
+.mobile-user-section {
+  animation: slideInFromRight 0.4s ease-out;
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsive adjustments for very small screens */
+@media (max-width: 400px) {
+  .mobile-user-section {
+    padding: 16px;
+    margin-top: 12px;
+  }
+  
+  .mobile-user-welcome {
+    font-size: 15px;
+    margin-bottom: 15px;
+    padding-bottom: 12px;
+  }
+  
+  .mobile-user-btn {
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+  
+  .mobile-btn-icon {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* Dark mode support (optional) */
+@media (prefers-color-scheme: dark) {
+  .mobile-user-section {
+    background: linear-gradient(135deg, #d4021f 0%, #a8011a 100%);
+  }
+}
