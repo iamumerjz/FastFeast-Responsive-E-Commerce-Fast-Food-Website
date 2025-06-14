@@ -1,6 +1,6 @@
 # FastFeast-Responsive-E-Commerce-Fast-Food-Website
 
-# Screenshot
+# Screenshots
 ![image](https://github.com/user-attachments/assets/4364f85c-becc-4e77-93b3-aab809438244)
 
 ![image](https://github.com/user-attachments/assets/a847b0ab-a664-461b-80d2-76f8d85a0153)
@@ -18,9 +18,7 @@
 ![image](https://github.com/user-attachments/assets/aa3f40d5-5e7a-4bcf-95ad-c7eaeeabc383)
 
 ![image](https://github.com/user-attachments/assets/e41a1585-0be2-4814-9744-30c0cec351d7)
-
 ![image](https://github.com/user-attachments/assets/10029c84-8b5e-4ce1-b0cc-660dc78aee07)
-
 ![image](https://github.com/user-attachments/assets/3c1bef6c-9a77-4841-a48c-1c028e72daaf)
 
 ![image](https://github.com/user-attachments/assets/c95e5846-a626-4693-bfb2-242a41f17ded)
