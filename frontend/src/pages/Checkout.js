@@ -11,8 +11,7 @@ import {
 } from "lucide-react";
 import "./Checkout.css";
 
-const MAPBOX_ACCESS_TOKEN =
-  "pk.eyJ1Ijoib21lcjIwMjIiLCJhIjoiY21iYXRyaDVuMDhvaDJyc2FnOHA4bHVmOCJ9.i-0qpwcSwQ5xMyjstvABsA";
+const MAPBOX_ACCESS_TOKEN = "your_key_here";
 const initialCountry = "Pakistan";
 const TAX_RATE = 0.08;
 const DELIVERY_FEE = 0;
