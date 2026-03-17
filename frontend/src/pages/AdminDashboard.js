@@ -677,36 +677,21 @@ useEffect(() => {
               </div>
 
               <div className="ff-admin-form-group">
-                <label className="ff-admin-form-label" htmlFor="image-upload">
-                  Image Upload
-                </label>
-                <input
-                  id="image-upload"
-                  type="file"
-                  style={{ display: "none" }}
-                  accept="image/*"
-                  onChange={(e) =>
-                    setNewItem({ ...newItem, image: e.target.files[0] })
-                  }
-                />
-                <label htmlFor="image-upload" className="ff-admin-image-upload-label">
-                  <Plus size={20} />
-                  {newItem.image && newItem.image.name
-                    ? newItem.image.name
-                    : "Choose Image File"}
-                </label>
-                {newItem.image && (
-                  <img
-                    src={
-                      newItem.image instanceof File
-                        ? URL.createObjectURL(newItem.image)
-                        : newItem.image
-                    }
-                    alt="Preview"
-                    className="ff-admin-preview-thumb"
-                  />
-                )}
-              </div>
+  <label className="ff-admin-form-label" htmlFor="image-url">
+    Image URL
+  </label>
+  <input
+    type="text"
+    id="image-url"
+    className="ff-admin-form-input"
+    value={newItem.image}
+    onChange={(e) => setNewItem({ ...newItem, image: e.target.value })}
+    placeholder="Enter image URL"
+  />
+  {newItem.image && (
+    <img src={newItem.image} alt="Preview" className="ff-admin-preview-thumb" />
+  )}
+</div>
 
               <div className="ff-admin-form-group">
                 <div className="ff-admin-checkbox-group">
