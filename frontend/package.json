@@ -1,5 +1,5 @@
 {
-  "proxy": "https://fastfeast-responsive-e-commerce-fast.onrender.com",
+  "proxy": "https://fastfeast-responsive-e-commerce-fast.onrender.com/",
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
