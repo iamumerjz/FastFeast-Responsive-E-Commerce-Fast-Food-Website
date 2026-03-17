@@ -140,7 +140,7 @@ useEffect(() => {
       await axios.post(`${process.env.REACT_APP_API_URL}/api/menu/add`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
-          "Content-Type": "multipart/form-data",
+          "Content-Type": "application/json",
         },
       });
       setShowAddItemModal(false);
@@ -174,13 +174,11 @@ useEffect(() => {
       formData.append("price", newItem.price);
       formData.append("description", newItem.description);
       formData.append("available", newItem.available);
-      if (newItem.image instanceof File) {
-        formData.append("image", newItem.image);
-      }
+     formData.append("image", newItem.image);
       await axios.put(`${API_URL}/${editingItem._id}`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
-          "Content-Type": "multipart/form-data",
+          "Content-Type": "application/json",
         },
       });
       setShowAddItemModal(false);
