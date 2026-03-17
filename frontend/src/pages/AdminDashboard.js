@@ -137,7 +137,7 @@ useEffect(() => {
       formData.append("description", newItem.description);
       formData.append("available", newItem.available);
       if (newItem.image) formData.append("image", newItem.image);
-      await axios.post("/api/menu/add", formData, {
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/menu/add`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",
@@ -230,7 +230,7 @@ useEffect(() => {
     const token = localStorage.getItem("token");
     try {
       await axios.put(
-        `/api/orders/${orderId}/status`,
+        `${process.env.REACT_APP_API_URL}/api/orders/${orderId}/status`,
         { status: newStatus },
         { headers: { Authorization: `Bearer ${token}` } }
       );
