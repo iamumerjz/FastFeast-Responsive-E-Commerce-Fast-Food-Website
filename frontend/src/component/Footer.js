@@ -139,7 +139,7 @@ const Footer = () => {
           <div>10.00 Am - 10.00 Pm</div>
         </div>
       </div>
-      <div className="footer-bottom">© 2025 All Rights Reserved By FastFeast</div>
+      <div className="footer-bottom">© 2025 All Rights Reserved. Made with ❤️ by Muhammad Umer Ijaz</div>
     </footer>
   );
 };
