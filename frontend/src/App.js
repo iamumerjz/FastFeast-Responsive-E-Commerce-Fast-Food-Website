@@ -36,7 +36,7 @@ const handleOrderPlaced = (order) => {
 
   // Load menu items once (for guest cart rendering)
   useEffect(() => {
-    axios.get("/api/menu/all").then((res) => setMenuItems(res.data));
+    axios.get(`${process.env.REACT_APP_API_URL}/api/menu/all`).then((res) => setMenuItems(res.data));
   }, []);
 
   // Restore user from localStorage on app load/refresh
@@ -75,7 +75,7 @@ const handleOrderPlaced = (order) => {
   try {
     const token = localStorage.getItem("token");
     if (!token) return;
-    const res = await axios.get("/api/cart", {
+    const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/cart`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     // Normalize items for frontend use!
@@ -107,7 +107,7 @@ const handleOrderPlaced = (order) => {
     if (user) {
       try {
         await axios.post(
-          "/api/cart/add",
+          `${process.env.REACT_APP_API_URL}/api/cart/add`,
           { menuItemId, quantity },
           {
             headers: {
@@ -137,7 +137,7 @@ const handleOrderPlaced = (order) => {
     if (user) {
       axios
         .post(
-          "/api/cart/remove",
+          `${process.env.REACT_APP_API_URL}/api/cart/remove`,
           { menuItemId },
           {
             headers: {
@@ -165,7 +165,7 @@ const handleDiscoverMenu = () => {
     if (user) {
       axios
         .post(
-          "/api/cart/update",
+          `${process.env.REACT_APP_API_URL}/api/cart/update`,
           { menuItemId, quantity },
           {
             headers: {
