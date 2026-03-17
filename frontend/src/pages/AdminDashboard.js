@@ -26,8 +26,8 @@ const statusOptions = [
   { value: "cancelled", label: "Cancelled" },
 ];
 
-const API_URL = "/api/menu";
-const ORDERS_API = "/api/orders";
+const API_URL = `${process.env.REACT_APP_API_URL}/api/menu`;
+const ORDERS_API = `${process.env.REACT_APP_API_URL}/api/orders`;
 
 const AdminDashboard = ({ onLogout }) => {
   const [activeTab, setActiveTab] = useState("dashboard");
