@@ -14,7 +14,7 @@ const PastOrdersPage = ({ user }) => {
     const fetchOrders = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get('/api/orders/my', {
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/orders/my`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setOrders(res.data || []);
