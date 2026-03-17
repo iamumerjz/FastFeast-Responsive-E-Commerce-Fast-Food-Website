@@ -27,7 +27,7 @@ const Signin = ({ open, onClose, onLogin }) => {
     setIsLoading(true);
 
     try {
-      const res = await axios.post("/api/auth/login", formData);
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/login`, formData);
 
       // Save token and user to localStorage for persistence
       localStorage.setItem("token", res.data.token);
