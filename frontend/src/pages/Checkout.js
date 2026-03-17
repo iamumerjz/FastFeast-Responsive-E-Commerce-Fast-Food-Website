@@ -313,7 +313,7 @@ const CheckoutPage = ({ cart, menuItems, user, onOrderPlaced }) => {
       // --- POST TO BACKEND ---
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        "/api/orders",
+        `${process.env.REACT_APP_API_URL}/api/orders`,
         {
           cart: displayCart, // this is your cart array of {id, name, price, quantity}
           subtotal,
