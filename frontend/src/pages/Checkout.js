@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import "./Checkout.css";
 
-const MAPBOX_ACCESS_TOKEN = "your_key_here";
+const MAPBOX_ACCESS_TOKEN = process.env.REACT_APP_MAPBOX_KEY;
 const initialCountry = "Pakistan";
 const TAX_RATE = 0.08;
 const DELIVERY_FEE = 0;
