@@ -16,7 +16,7 @@ const Menu = ({ onAddToCart }) => {
     const fetchMenu = async () => {
       setLoading(true);
       try {
-        const res = await axios.get("/api/menu/all");
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/menu/all`);
         setMenuItems(res.data);
       } catch (err) {
         setMenuItems([]);
