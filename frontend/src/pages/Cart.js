@@ -28,7 +28,7 @@ const CartPage = ({
   if (user) {
     setLoading(true);
     axios
-      .get("/api/cart", {
+      .get(`${process.env.REACT_APP_API_URL}/api/cart`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
       })
       .then(res => {
@@ -64,12 +64,12 @@ const CartPage = ({
   const updateCartQuantity = async (itemId, newQty) => {
     if (user) {
       await axios.post(
-        "/api/cart/update",
+        `${process.env.REACT_APP_API_URL}/api/cart/update`,
         { menuItemId: itemId, quantity: newQty },
         { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
       );
       // Refetch to stay in sync
-      const res = await axios.get("/api/cart", {
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/cart`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
       });
       setLocalCart(res.data.items.map(i => ({
@@ -86,11 +86,11 @@ const CartPage = ({
   const removeFromCart = async (itemId) => {
     if (user) {
       await axios.post(
-        "/api/cart/remove",
+        `${process.env.REACT_APP_API_URL}/api/cart/remove`,
         { menuItemId: itemId },
         { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
       );
-      const res = await axios.get("/api/cart", {
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/cart`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
       });
       setLocalCart(res.data.items.map(i => ({
