@@ -73,7 +73,7 @@ useEffect(() => {
   const fetchStats = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get("/api/orders/stats", {
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/orders/stats`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setStats(res.data); // now contains totalRevenue too!
@@ -87,7 +87,7 @@ useEffect(() => {
   const fetchStats = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get("/api/orders/stats", {
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/orders/stats`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setStats(res.data);
