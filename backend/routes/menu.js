@@ -2,43 +2,28 @@ const express = require('express');
 const MenuItem = require('../models/MenuItem');
 const User = require('../models/User');
 const auth = require('../middleware/auth');
-const multer = require('multer');
-const path = require('path');
 
 const router = express.Router();
 
-// Store in /uploads, keep original filename
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'uploads/'); // Make sure this folder exists!
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + '-' + file.originalname);
-  }
-});
-const upload = multer({ storage: storage });
-
 // --------- ADD MENU ITEM (ADMIN ONLY) ----------
-router.post('/add', auth, upload.single('image'), async (req, res) => {
+router.post('/add', auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.user_id);
     if (!user || user.role !== 2) {
       return res.status(403).json({ message: 'Admins only' });
     }
 
-    const { name, category, price, description, available } = req.body;
+    const { name, category, price, description, available, image } = req.body;
     if (!name || !category || !price) {
       return res.status(400).json({ message: 'Required fields missing.' });
     }
-
-    let imageUrl = req.file ? `/uploads/${req.file.filename}` : "";
 
     const menuItem = new MenuItem({
       name,
       category,
       price: parseFloat(price),
       description,
-      image: imageUrl,
+      image: image || "", // store image URL directly
       available
     });
     await menuItem.save();
@@ -60,27 +45,33 @@ router.get('/all', async (req, res) => {
 });
 
 // --------- UPDATE MENU ITEM (ADMIN ONLY) ----------
-router.put('/:id', auth, upload.single('image'), async (req, res) => {
+router.put('/:id', auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.user_id);
     if (!user || user.role !== 2) {
       return res.status(403).json({ message: 'Admins only' });
     }
 
-    const { name, category, price, description, available } = req.body;
-    let updatedFields = { name, category, price, description, available };
+    const { name, category, price, description, available, image } = req.body;
 
-    if (req.file) {
-      updatedFields.image = `/uploads/${req.file.filename}`;
-    }
-    if (updatedFields.price) updatedFields.price = parseFloat(updatedFields.price);
+    const updatedFields = {
+      name,
+      category,
+      price: price ? parseFloat(price) : undefined,
+      description,
+      available,
+    };
+
+    if (image) updatedFields.image = image; // update image URL if provided
 
     const updated = await MenuItem.findByIdAndUpdate(
       req.params.id,
       updatedFields,
       { new: true }
     );
+
     if (!updated) return res.status(404).json({ message: "Menu item not found." });
+
     res.json({ message: "Menu item updated!", menuItem: updated });
   } catch (err) {
     console.error(err);
