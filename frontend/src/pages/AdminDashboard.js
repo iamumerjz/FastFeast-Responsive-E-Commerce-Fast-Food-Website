@@ -125,39 +125,54 @@ useEffect(() => {
     if (activeTab === "orders") fetchOrders();
   }, [activeTab]);
 
-  const handleAddItem = async () => {
-    const token = localStorage.getItem("token");
-    if (!newItem.name || !newItem.price)
-      return alert("Name and price required");
-    try {
-      const formData = new FormData();
-      formData.append("name", newItem.name);
-      formData.append("category", newItem.category);
-      formData.append("price", newItem.price);
-      formData.append("description", newItem.description);
-      formData.append("available", newItem.available);
-      if (newItem.image) formData.append("image", newItem.image);
-      await axios.post(`${process.env.REACT_APP_API_URL}/api/menu/add`, formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      });
-      setShowAddItemModal(false);
-      setNewItem({
-        name: "",
-        category: "Pizza",
-        price: "",
-        description: "",
-        image: "",
-        available: true,
-      });
-      setEditingItem(null);
-      fetchMenuItems();
-    } catch (err) {
-      alert(err.response?.data?.message || "Failed to add item.");
-    }
-  };
+const handleAddItem = async () => {
+  const token = localStorage.getItem("token");
+  if (!newItem.name || !newItem.price) return alert("Name and price required");
+  try {
+    await axios.post(
+      `${process.env.REACT_APP_API_URL}/api/menu/add`,
+      {
+        name: newItem.name,
+        category: newItem.category,
+        price: newItem.price,
+        description: newItem.description,
+        available: newItem.available,
+        image: newItem.image,
+      },
+      { headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" } }
+    );
+    setShowAddItemModal(false);
+    setEditingItem(null);
+    setNewItem({ name: "", category: "Pizza", price: "", description: "", image: "", available: true });
+    fetchMenuItems();
+  } catch (err) {
+    alert(err.response?.data?.message || "Failed to add item.");
+  }
+};
+
+const handleUpdateItem = async () => {
+  const token = localStorage.getItem("token");
+  try {
+    await axios.put(
+      `${API_URL}/${editingItem._id}`,
+      {
+        name: newItem.name,
+        category: newItem.category,
+        price: newItem.price,
+        description: newItem.description,
+        available: newItem.available,
+        image: newItem.image,
+      },
+      { headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" } }
+    );
+    setShowAddItemModal(false);
+    setEditingItem(null);
+    setNewItem({ name: "", category: "Pizza", price: "", description: "", image: "", available: true });
+    fetchMenuItems();
+  } catch (err) {
+    alert(err.response?.data?.message || "Failed to update item.");
+  }
+};
 
   const handleEditItem = (item) => {
     setEditingItem(item);
@@ -165,37 +180,7 @@ useEffect(() => {
     setShowAddItemModal(true);
   };
 
-  const handleUpdateItem = async () => {
-    const token = localStorage.getItem("token");
-    try {
-      const formData = new FormData();
-      formData.append("name", newItem.name);
-      formData.append("category", newItem.category);
-      formData.append("price", newItem.price);
-      formData.append("description", newItem.description);
-      formData.append("available", newItem.available);
-     formData.append("image", newItem.image);
-      await axios.put(`${API_URL}/${editingItem._id}`, formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      });
-      setShowAddItemModal(false);
-      setEditingItem(null);
-      setNewItem({
-        name: "",
-        category: "Pizza",
-        price: "",
-        description: "",
-        image: "",
-        available: true,
-      });
-      fetchMenuItems();
-    } catch (err) {
-      alert(err.response?.data?.message || "Failed to update item.");
-    }
-  };
+  
 
   const handleDeleteItem = async (id) => {
     if (!window.confirm("Delete this menu item?")) return;
